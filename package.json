@@ -1,0 +1,13 @@
+{
+  "name": "sar-web",
+  "version": "1.0.0",
+  "main": "index.html",
+  "author": "Asiern",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./src/styles/input.css -o ./src/styles/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.1"
+  }
+}

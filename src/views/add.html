@@ -1,0 +1,46 @@
+<!-- 
+ * @author Asier Nuñez
+ * @license MIT
+ * @see https://github.com/Asiern/SARLyrics
+ -->
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>SARLyrics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="../styles/output.css" rel="stylesheet"/>
+    <script src="../js/index.js"></script>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+</head>
+
+<body class="bg-green-50 min-h-screen flex flex-col">
+    <div class="flex flex-grow justify-center flex-col">
+        <div class="h-auto w-6/12 m-auto">
+            <a class="font-Poppins text-green-500 bg-transparent cursor-pointer py-4" href="/">
+                < Go Back</a>
+                    <div class="bg-green-100 rounded-xl shadow-md">
+                        <form class=" flex flex-shrink flex-col justify-center text-center px-12 py-4" action="add.php" method="post">
+                            <label class="font-Poppins text-green-500 font-bold text-xl">Add Lyrics</label><br>
+                            <label class="font-Poppins">Title</label><br>
+                            <input name="title" class="rounded-md p-2 shadow-md focus:outline-none font-Poppins w-full focus:ring ring-green-500" type="text" placeholder="Title"></input><br>
+                            <label class="font-Poppins">Author/Band</label><br>
+                            <input name="author" class="rounded-md p-2 shadow-md focus:outline-none font-Poppins w-full focus:ring ring-green-500" type="text" placeholder="Author"></input><br>
+                            <label class="font-Poppins">Album/EP</label><br>
+                            <input name="album" class="rounded-md p-2 shadow-md focus:outline-none font-Poppins w-full focus:ring ring-green-500" type="text" placeholder="Album/EP"></input><br>
+                            <label class="font-Poppins">Lyrics</label><br>
+                            <textarea name="lyrics" class="rounded-md p-2 shadow-md focus:outline-none font-Poppins w-full focus:ring ring-green-500" type="text" placeholder="Lyrics"></textarea><br>
+                            <input class="p-2 bg-green-500 rounded-md text-white shadow-md m-4 hover:scale-110 transition transform cursor-pointer font-Poppins" type="submit" value="Add Lyrics" onclick="{return validateForm(this.form)}"></input><br>
+                        </form>
+                    </div>
+        </div>
+    </div>
+    <footer>
+        <div class="w-screen text-center p-4 bg-green-500">
+            <h1 class="text-white font-Poppins">© Copyright 2021 Asier Nuñez</h1>
+        </div>
+    </footer>
+</body>
+
+</html>

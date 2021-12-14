@@ -81,7 +81,7 @@ function GetLyrics()
     }
 
     // Create query
-    $sql = "SELECT id,title, author, album, lyrics FROM lyrics";
+    $sql = "SELECT id,title, author, album FROM lyrics";
     $result = $connection->query($sql);
 
     // Close connection to db

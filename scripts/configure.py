@@ -26,8 +26,11 @@ _dir = os.getcwd()
 print(text.lightcyan+"Project configurer"+text.reset)
 
 print("\nConfiguring " + text.red+"Last.fm"+text.reset+" API")
-key_path = _dir + "/src/config/api.key"
-f = open(key_path, "w")
+key_path = _dir + "/src/config/"
+if not os.path.exists(key_path):
+    os.makedirs(key_path)
+
+f = open(key_path+"api.key", "w")
 key = input("Enter Last.fm Api Key (Press Enter to Skip): ")
 f.write(key)
 f.close()
@@ -37,7 +40,9 @@ src = _dir+"/src/.env.example"
 dst = _dir+"/src/.env"
 
 f = open(src, "r")
-os.remove(dst)
+if os.path.exists(dst):
+    os.remove(dst)
+    
 out = open(dst, "a")
 for line in f.readlines():
     name, value = line.split("=")

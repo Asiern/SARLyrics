@@ -55,14 +55,15 @@
     require "./controllers/LyricController.php";
 
     $lyric = getLastLyrics()->fetch_assoc();
-
-    echo "<div class='bg-white rounded-xl mb-4 shadow-md flex flex-row cursor-pointer transition transform hover:scale-105' onclick='{openLyrics(" . $lyric["id"] . ")}'>";
-    echo "  <img class='rounded-l-xl' src='https://lastfm.freetls.fastly.net/i/u/300x300/b15cbf8c01c43188ffc7a72e800bed0e.png'></img>";
-    echo "  <div class='pl-4 flex flex-col flex-grow justify-center text-center'>";
-    echo "    <h1 class='font-Poppins text-green-500 font-bold text-2xl'>" . $lyric["author"] . "</h1>";
-    echo "    <h1 class='font-Poppins text-green-500 font-bold text-2xl'>" . $lyric["title"] . "</h1>";
-    echo "  </div>";
-    echo "</div>";
+    if ($lyric != null) {
+      echo "<div class='bg-white rounded-xl mb-4 shadow-md flex flex-row cursor-pointer transition transform hover:scale-105' onclick='{openLyrics(" . $lyric["id"] . ")}'>";
+      echo "  <img class='rounded-l-xl' src='https://lastfm.freetls.fastly.net/i/u/300x300/b15cbf8c01c43188ffc7a72e800bed0e.png'></img>";
+      echo "  <div class='pl-4 flex flex-col flex-grow justify-center text-center'>";
+      echo "    <h1 class='font-Poppins text-green-500 font-bold text-2xl'>" . $lyric["author"] . "</h1>";
+      echo "    <h1 class='font-Poppins text-green-500 font-bold text-2xl'>" . $lyric["title"] . "</h1>";
+      echo "  </div>";
+      echo "</div>";
+    }
     ?>
     <!-- BUTTONS -->
     <div class="grid grid-cols-2 gap-4">

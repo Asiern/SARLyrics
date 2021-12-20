@@ -7,18 +7,27 @@
  */
 
 require "../controllers/LyricController.php";
+require "../controllers/CoverController.php";
+
 
 // Get form data from POST
 $title = trim($_POST['title']);
 $author = trim($_POST['author']);
 $album = trim($_POST['album']);
 $lyrics = trim($_POST['lyrics']);
+$cover = getTrackCover($title, $author);
+
+// TODO validate form data
 
 // Save form data to database
-$result = SaveLyrics($title, $author, $album, $lyrics);
+if ($cover != null) { // If cover found
+    $result = SaveLyrics($title, $author, $album, $lyrics, $cover);
+} else { // If cover not found
+    $result = SaveLyrics($title, $author, $album, $lyrics, null);
+}
 
 if ($result) {
-    // If added correctly redirect user
+    // If added correctly => redirect user
     echo '<script type="text/javascript">
         window.location = "/views/lyrics.php"
         </script>';

@@ -26,8 +26,11 @@
         <div class="bg-white px-6 py-2 w-6/12 rounded-xl shadow-md mx-auto my-6">
             <div class="flex flex-row justify-between">
                 <img class="pr-4" src="../assets/logo.svg"></img>
-                <div class="flex my-auto flex-grow">
-                    <input class="rounded-md p-2 focus:outline-none font-Poppins w-full ring-2 focus:ring-green-500 ring-gray-200 " type="search" placeholder="Search"></input>
+                <div class="flex my-auto">
+                    <input class="rounded-md p-2 focus:outline-none font-Poppins w-full ring-2 focus:ring-green-500 ring-gray-200 " type="search" placeholder="Search" id="search"></input>
+                    <a class="my-0 flex justify-center" href="javascript:searchLyrics()">
+                        <img class="pl-4 cursor-pointer" src="../assets/search.svg"></img>
+                    </a>
                 </div>
                 <div>
                     <ul class="flex flex-row">
@@ -49,7 +52,7 @@
     <?php
     require "../controllers/LyricController.php";
 
-    if (isset($_GET["search"])) {
+    if (isset($_GET["search"]) && $_GET["search"] != "") {
         $lyrics = GetLyricsFilter($_GET["search"]);
     } else {
         $lyrics = GetLyrics();
@@ -65,7 +68,7 @@
         echo "<div class='mx-20 grid grid-cols-3 md:grid-cols-6 '>";
         while ($row = $lyrics->fetch_assoc()) {
             echo "<div class='bg-white m-4 rounded-xl shadow-sm text-center cursor-pointer transition transform hover:scale-105' onclick='{openLyrics(" . $row["id"] . ")}'  >";
-            echo "<img class='rounded-t-xl mb-2 aspect-square h-auto w-auto' src='https://lastfm.freetls.fastly.net/i/u/300x300/b15cbf8c01c43188ffc7a72e800bed0e.png'></img>";
+            echo "<img class='rounded-t-xl mb-2 aspect-square h-auto w-auto' src='" . $row["cover"] . "'></img>";
             echo "<div class='p-2'>";
             echo "<h1 class='font-Poppins text-l text-green-500 font-bold'>" . $row["title"] . "</h1>";
             echo "<h1 class='font-Poppins text-l'>" . $row["author"] . "</h1>";

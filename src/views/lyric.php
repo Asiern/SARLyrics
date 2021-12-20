@@ -26,8 +26,11 @@
         <div class="bg-white px-6 py-2 w-6/12 rounded-xl shadow-md mx-auto my-6">
             <div class="flex flex-row justify-between">
                 <img class="pr-4" src="../assets/logo.svg"></img>
-                <div class="flex my-auto flex-grow">
-                    <input class="rounded-md p-2 focus:outline-none font-Poppins w-full ring-2 focus:ring-green-500 ring-gray-200 " type="search" placeholder="Search"></input>
+                <div class="flex my-auto">
+                    <input class="rounded-md p-2 focus:outline-none font-Poppins w-full ring-2 focus:ring-green-500 ring-gray-200 " type="search" placeholder="Search" id="search"></input>
+                    <a class="my-0 flex justify-center" href="javascript:searchLyrics()">
+                        <img class="pl-4 cursor-pointer" src="../assets/search.svg"></img>
+                    </a>
                 </div>
                 <div>
                     <ul class="flex flex-row">
@@ -57,7 +60,7 @@
             echo "</div>";
         } else {
             echo "<div class='w-6/12 bg-white shadow-md rounded-xl my-auto p-8 text-center'>";
-            echo "<img class='rounded-xl mx-auto my-8' src='https://lastfm.freetls.fastly.net/i/u/300x300/b15cbf8c01c43188ffc7a72e800bed0e.png'></img>";
+            echo "<img class='rounded-xl mx-auto my-8' src='" . $lyric["cover"] . "'></img>";
             echo "<h1 class='font-Poppins text-green-500 text-2xl my-1'>" . $lyric["title"] . "</h1>";
             echo "<h1 class='font-Poppins text-green-500 text-xl my-1'>" . $lyric["author"] . "</h1>";
             echo "<p class='font-Poppins'>" . $lyric["lyrics"] . "</p>";

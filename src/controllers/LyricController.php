@@ -6,7 +6,22 @@
  * @see https://github.com/Asiern/SARLyrics
  */
 
-require_once "EnvController.php";
+// Load env variables from .env
+require_once __DIR__ . '/EnvController.php';
+$env = new EnvController(__DIR__ . '/../.env');
+$env->load();
+
+// Get credentials from env
+$servername = getenv("DB_HOST", TRUE);
+$database = getenv("DB_DATABASE", TRUE);
+$username =  getenv("DB_USERNAME", TRUE);
+$password = getenv("DB_PASSWORD", TRUE);
+
+// Connect to database using credentials
+$connection = new mysqli($servername, $username, $password, $database);
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
 
 /**
  * Savelyrics to database
@@ -18,27 +33,9 @@ require_once "EnvController.php";
  * 
  * @return boolean $success true <=> query successful 
  */
-function SaveLyrics($title, $author, $album, $lyrics)
+function SaveLyrics($title, $author, $album, $lyrics, $cover)
 {
-    // Load credentias to env
-    require_once __DIR__ . '/EnvController.php';
-    $env = new EnvController(__DIR__ . '/../.env');
-    $env->load();
-
-    // Get database credentials from evironment variables
-    $servername = getenv("DB_HOST", TRUE);
-    $database = getenv("DB_DATABASE", TRUE);
-    $username =  getenv("DB_USERNAME", TRUE);
-    $password = getenv("DB_PASSWORD", TRUE);
-
-    // Get Cover
-    $cover = null;
-
-    // Connect to database
-    $connection = new mysqli($servername, $username, $password, $database);
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
-    }
+    global $connection;
 
     // Create query
     if ($cover === null) {
@@ -63,25 +60,10 @@ function SaveLyrics($title, $author, $album, $lyrics)
  */
 function GetLyrics()
 {
-    // Load credentias to env
-    require_once __DIR__ . '/EnvController.php';
-    $env = new EnvController(__DIR__ . '/../.env');
-    $env->load();
-
-    // Get database credentials from evironment variables
-    $servername = getenv("DB_HOST", TRUE);
-    $database = getenv("DB_DATABASE", TRUE);
-    $username =  getenv("DB_USERNAME", TRUE);
-    $password = getenv("DB_PASSWORD", TRUE);
-
-    // Connect to database
-    $connection = new mysqli($servername, $username, $password, $database);
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
-    }
+    global $connection;
 
     // Create query
-    $sql = "SELECT id,title, author, album FROM lyrics";
+    $sql = "SELECT id, title, author, cover FROM lyrics";
     $result = $connection->query($sql);
 
     // Close connection to db
@@ -99,25 +81,10 @@ function GetLyrics()
  */
 function getLyricsById($id)
 {
-    // Load credentias to env
-    require_once __DIR__ . '/EnvController.php';
-    $env = new EnvController(__DIR__ . '/../.env');
-    $env->load();
-
-    // Get database credentials from evironment variables
-    $servername = getenv("DB_HOST", TRUE);
-    $database = getenv("DB_DATABASE", TRUE);
-    $username =  getenv("DB_USERNAME", TRUE);
-    $password = getenv("DB_PASSWORD", TRUE);
-
-    // Connect to database
-    $connection = new mysqli($servername, $username, $password, $database);
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
-    }
+    global $connection;
 
     // Create query
-    $sql = "SELECT id,title, author, album, lyrics FROM lyrics WHERE id=" . $id;
+    $sql = "SELECT id, title, author, album, lyrics, cover FROM lyrics WHERE id=" . $id;
     $result = $connection->query($sql);
 
     // Close connection to db
@@ -133,25 +100,10 @@ function getLyricsById($id)
  */
 function getLastLyrics()
 {
-    // Load credentias to env
-    require_once __DIR__ . '/EnvController.php';
-    $env = new EnvController(__DIR__ . '/../.env');
-    $env->load();
-
-    // Get database credentials from evironment variables
-    $servername = getenv("DB_HOST", TRUE);
-    $database = getenv("DB_DATABASE", TRUE);
-    $username =  getenv("DB_USERNAME", TRUE);
-    $password = getenv("DB_PASSWORD", TRUE);
-
-    // Connect to database
-    $connection = new mysqli($servername, $username, $password, $database);
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
-    }
+    global $connection;
 
     // Create query
-    $sql = "SELECT * FROM lyrics ORDER BY ID DESC LIMIT 1";
+    $sql = "SELECT id, title, author, cover FROM lyrics ORDER BY ID DESC LIMIT 1";
     $result = $connection->query($sql);
 
     // Close connection to db
@@ -169,25 +121,10 @@ function getLastLyrics()
  */
 function GetLyricsFilter($value)
 {
-    // Load credentias to env
-    require_once __DIR__ . '/EnvController.php';
-    $env = new EnvController(__DIR__ . '/../.env');
-    $env->load();
-
-    // Get database credentials from evironment variables
-    $servername = getenv("DB_HOST", TRUE);
-    $database = getenv("DB_DATABASE", TRUE);
-    $username =  getenv("DB_USERNAME", TRUE);
-    $password = getenv("DB_PASSWORD", TRUE);
-
-    // Connect to database
-    $connection = new mysqli($servername, $username, $password, $database);
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
-    }
+    global $connection;
 
     // Create query
-    $sql = "SELECT * FROM lyrics WHERE LOWER(author)=" . $value;
+    $sql = "SELECT id, title, author, cover FROM lyrics WHERE LOWER(author)='" . $value . "' OR LOWER(title)='" . $value . "'";
     $result = $connection->query($sql);
 
     // Close connection to db

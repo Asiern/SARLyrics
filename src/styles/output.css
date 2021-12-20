@@ -512,6 +512,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 5rem;
 }
 
+.my-0{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .ml-2{
   margin-left: 0.5rem;
 }
@@ -534,6 +539,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .grid{
   display: grid;
+}
+
+.hidden{
+  display: none;
 }
 
 .aspect-square{
@@ -656,6 +665,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-green-100{
   --tw-bg-opacity: 1;
   background-color: rgb(220 252 231 / var(--tw-bg-opacity));
+}
+
+.fill-sky-700{
+  fill: #0369a1;
 }
 
 .p-2{

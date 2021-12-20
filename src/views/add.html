@@ -13,6 +13,7 @@
     <link href="../styles/output.css" rel="stylesheet"/>
     <script src="../js/index.js"></script>
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
 <body class="bg-green-50 min-h-screen flex flex-col">
@@ -32,6 +33,7 @@
                             <label class="font-Poppins">Lyrics</label><br>
                             <textarea name="lyrics" class="rounded-md p-2 shadow-md focus:outline-none font-Poppins w-full focus:ring ring-green-500" type="text" placeholder="Lyrics"></textarea><br>
                             <input class="p-2 bg-green-500 rounded-md text-white shadow-md m-4 hover:scale-110 transition transform cursor-pointer font-Poppins" type="submit" value="Add Lyrics" onclick="{return validateForm(this.form)}"></input><br>
+                            <input type="hidden" name="uri" id="Cover"></input>
                         </form>
                     </div>
         </div>

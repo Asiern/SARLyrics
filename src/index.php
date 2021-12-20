@@ -18,7 +18,6 @@
   <link href="./styles/output.css" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <script src="./js/index.js"></script>
-  <script src="./js/last.fm.js"></script>
 </head>
 
 <body class="bg-green-50 flex flex-col min-h-screen flex-grow">
@@ -28,8 +27,11 @@
     <div class="bg-white px-6 py-2 w-6/12 rounded-xl shadow-md mx-auto my-6">
       <div class="flex flex-row justify-between">
         <img class="pr-4" src="../assets/logo.svg"></img>
-        <div class="flex my-auto flex-grow">
-          <input class="rounded-md p-2 focus:outline-none font-Poppins w-full ring-2 focus:ring-green-500 ring-gray-200 " type="search" placeholder="Search"></input>
+        <div class="flex my-auto">
+          <input class="rounded-md p-2 focus:outline-none font-Poppins w-full ring-2 focus:ring-green-500 ring-gray-200 " type="search" placeholder="Search" id="search"></input>
+          <a class="my-0 flex justify-center" href="javascript:searchLyrics()">
+            <img class="pl-4 cursor-pointer" src="../assets/search.svg"></img>
+          </a>
         </div>
         <div>
           <ul class="flex flex-row">
@@ -57,8 +59,12 @@
     $lyric = getLastLyrics()->fetch_assoc();
     if ($lyric != null) {
       echo "<div class='bg-white rounded-xl mb-4 shadow-md flex flex-row cursor-pointer transition transform hover:scale-105' onclick='{openLyrics(" . $lyric["id"] . ")}'>";
-      echo "  <img class='rounded-l-xl' src='https://lastfm.freetls.fastly.net/i/u/300x300/b15cbf8c01c43188ffc7a72e800bed0e.png'></img>";
-      echo "  <div class='pl-4 flex flex-col flex-grow justify-center text-center'>";
+      echo "  <img class='rounded-l-xl' src='" . $lyric["cover"] . "'></img>";
+      if ($lyric["cover"] == null) {
+        echo "  <div class='pl-4 flex flex-col flex-grow justify-center text-center py-8'>";
+      } else {
+        echo "  <div class='pl-4 flex flex-col flex-grow justify-center text-center'>";
+      }
       echo "    <h1 class='font-Poppins text-green-500 font-bold text-2xl'>" . $lyric["author"] . "</h1>";
       echo "    <h1 class='font-Poppins text-green-500 font-bold text-2xl'>" . $lyric["title"] . "</h1>";
       echo "  </div>";
@@ -81,7 +87,6 @@
   <footer>
     <div class="w-screen text-center p-4 bg-green-500">
       <h1 class="text-white font-Poppins">© Copyright 2021 Asier Nuñez</h1>
-      <!-- <input class="p-2 bg-green-500 rounded-md text-white shadow-md m-4 hover:scale-110 transition transform cursor-pointer font-Poppins" type="button" value="Add Lyrics" onclick="getTrackCover('hundido','belo')"></input><br> -->
     </div>
   </footer>
 

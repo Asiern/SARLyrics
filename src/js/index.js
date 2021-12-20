@@ -6,9 +6,11 @@
 function validateForm(form) {
   const title = form.title.value;
   const author = form.author.value;
-  const album = form.aulbum.value;
+  const album = form.album.value;
   const lyrics = form.lyrics.value;
 
+  // TODO validate data
+  // TODO show error msg
   if (title === "" || author === "" || lyrics === "") {
     return false;
   }
@@ -36,6 +38,7 @@ function redirect(href) {
  * Search for lyrics
  * @param {string} value
  */
-function searchLyrics(value) {
-  redirect("/views/lyrics.php?search=" + value);
+function searchLyrics() {
+  const search = document.getElementById("search").value;
+  redirect("/views/lyrics.php?search=" + search);
 }

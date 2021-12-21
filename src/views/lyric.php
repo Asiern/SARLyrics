@@ -63,6 +63,7 @@
             echo "<img class='rounded-xl mx-auto my-8' src='" . $lyric["cover"] . "'></img>";
             echo "<h1 class='font-Poppins text-green-500 text-2xl my-1'>" . $lyric["title"] . "</h1>";
             echo "<h1 class='font-Poppins text-green-500 text-xl my-1'>" . $lyric["author"] . "</h1>";
+            echo "<h1 class='font-Poppins text-green-500 text-xl my-1'>" . $lyric["album"] . "</h1>";
             echo "<p class='font-Poppins'>" . $lyric["lyrics"] . "</p>";
             echo "</div>";
         }

@@ -469,12 +469,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.m-4{
-  margin: 1rem;
-}
-
 .m-auto{
   margin: auto;
+}
+
+.m-4{
+  margin: 1rem;
 }
 
 .mx-auto{
@@ -490,6 +490,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-auto{
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.my-0{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .mx-2{
@@ -510,11 +515,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-20{
   margin-left: 5rem;
   margin-right: 5rem;
-}
-
-.my-0{
-  margin-top: 0px;
-  margin-bottom: 0px;
 }
 
 .ml-2{
@@ -665,10 +665,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-green-100{
   --tw-bg-opacity: 1;
   background-color: rgb(220 252 231 / var(--tw-bg-opacity));
-}
-
-.fill-sky-700{
-  fill: #0369a1;
 }
 
 .p-2{

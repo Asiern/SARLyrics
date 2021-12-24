@@ -17,7 +17,10 @@ $album = trim($_POST['album']);
 $lyrics = trim($_POST['lyrics']);
 $cover = getTrackCover($title, $author);
 
-// TODO validate form data
+// Validate data
+$error = false;
+if ($title == "" || $author == "" || $album == "" || $lyrics == "")
+    $error = true;
 
 // Save form data to database
 if ($cover != null) { // If cover found
@@ -26,12 +29,7 @@ if ($cover != null) { // If cover found
     $result = SaveLyrics($title, $author, $album, $lyrics, null);
 }
 
-if ($result) {
-    // If added correctly => redirect user
-    echo '<script type="text/javascript">
-        window.location = "/views/lyrics.php"
-        </script>';
-} else {
+if ($error || !$result) {
     echo "<!DOCTYPE html>";
     echo "<html lang='en'>";
     echo "<head>";
@@ -52,4 +50,9 @@ if ($result) {
     echo "</div>";
     echo "</body>";
     echo "</html>";
+} else {
+    // If added correctly => redirect user
+    echo '<script type="text/javascript">
+     window.location = "/views/lyrics.php"
+     </script>';
 }

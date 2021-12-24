@@ -11,7 +11,8 @@ function validateForm(form) {
 
   // TODO validate data
   // TODO show error msg
-  if (title === "" || author === "" || lyrics === "") {
+  if (title === "" || author === "" || album === "" || lyrics === "") {
+    alert("Form fields cannot be empty");
     return false;
   }
 
